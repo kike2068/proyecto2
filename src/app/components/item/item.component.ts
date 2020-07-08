@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Tarea } from 'src/app/models/tarea';
+import { ServiceService } from 'src/app/services/service.service';
 
 @Component({
   selector: 'app-item',
@@ -9,9 +10,14 @@ import { Tarea } from 'src/app/models/tarea';
 export class ItemComponent implements OnInit {
   @Input() tarea: Tarea;
   
-  constructor() { }
+  constructor(private prSvc: ServiceService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
+
+  eliminar(): void {
+    // Filtro lista de tareas de acuerdo a la posicion 
+    this.prSvc.tareas = this.prSvc.tareas.filter(cadaTarea => cadaTarea !== this.tarea);
+    // this.prSvc.tareas.
   }
 
 }
