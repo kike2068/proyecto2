@@ -9,6 +9,7 @@ import { Tarea } from 'src/app/models/tarea';
 })
 export class FormularioComponent implements OnInit {
   public descripcion: string; // Mantiene la descripcion de la tarea
+  public usuario: string; // Mantiene el usuario de la tarea
 
   constructor(private tareaSvc: ServiceService) { }
 
@@ -19,6 +20,8 @@ export class FormularioComponent implements OnInit {
     if (this.descripcion && this.descripcion !== ' ') {
       console.log(this.descripcion);
       const tarea = new Tarea();
+      tarea.fecha = new Date();
+      tarea.usuario = this.usuario;
       tarea.descripcion = this.descripcion;
       this.tareaSvc.tareas.push(tarea);
       console.log(tarea);
